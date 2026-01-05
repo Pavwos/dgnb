@@ -1,0 +1,28 @@
+name: Update Telegram Group Name
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # 00:00 no Brasil (UTC-3)
+  workflow_dispatch: # permite rodar manualmente
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: node updateGroupName.js

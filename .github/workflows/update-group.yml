@@ -2,8 +2,8 @@ name: Update Telegram Group Name
 
 on:
   schedule:
-    - cron: '0 3 * * *' # 00:00 no Brasil (UTC-3)
-  workflow_dispatch: # permite rodar manualmente
+    - cron: '0 3 * * *'
+  workflow_dispatch:
 
 jobs:
   update:
@@ -25,4 +25,7 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: node updateGroupName.js
+        run: 
+          pwd 
+          ls -la
+          node updateGroupName.js
